@@ -1,0 +1,7 @@
+dev:    size   erasesize  name
+mtd0: 00004000 00010000 "boot"
+mtd1: 0040C000 00010000 "app"
+mtd2: 00001000 00010000 "version"
+mtd3: 0025F000 00010000 "download"
+mtd4: 000D0000 00010000 "custom"
+mtd5: 000C0000 00010000 "mtd"

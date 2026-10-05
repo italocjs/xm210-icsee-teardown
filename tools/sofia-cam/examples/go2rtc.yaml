@@ -1,0 +1,39 @@
+# go2rtc source config for Xiongmai / Sofia cameras that have no RTSP.
+#
+# Each stream runs `sofia-cam stream` piped into ffmpeg. ffmpeg does a stream
+# copy (no transcode) and hands go2rtc an RTSP feed on {output}. go2rtc then
+# restreams to Frigate, Home Assistant, browsers, etc.
+#
+# Replace USER / PASS with per-camera credentials, ideally via environment
+# expansion or a secrets file, not inline.
+#
+# -use_wallclock_as_timestamps 1 is required: the XM stream carries no PTS and
+# recorders stutter without it.
+#
+# Point SOFIA at the absolute path of the sofia-cam script on the host running
+# go2rtc.
+
+streams:
+  # H.264 camera, main stream
+  cam1:
+    - "exec:sh -c '/opt/sofia-cam/sofia-cam stream 192.168.1.88 USER PASS | ffmpeg -hide_banner -loglevel warning -use_wallclock_as_timestamps 1 -f h264 -i - -c copy -rtsp_transport tcp -f rtsp {output}'"
+
+  # H.264 camera, sub stream (QVGA) for detection
+  cam1_sub:
+    - "exec:sh -c '/opt/sofia-cam/sofia-cam stream 192.168.1.88 USER PASS --sub | ffmpeg -hide_banner -loglevel warning -use_wallclock_as_timestamps 1 -f h264 -i - -c copy -rtsp_transport tcp -f rtsp {output}'"
+
+  # second H.264 camera
+  cam2:
+    - "exec:sh -c '/opt/sofia-cam/sofia-cam stream 192.168.1.236 USER PASS | ffmpeg -hide_banner -loglevel warning -use_wallclock_as_timestamps 1 -f h264 -i - -c copy -rtsp_transport tcp -f rtsp {output}'"
+
+  # H.265 camera: note -f hevc on the input side
+  cam3:
+    - "exec:sh -c '/opt/sofia-cam/sofia-cam stream 192.168.1.47 USER PASS | ffmpeg -hide_banner -loglevel warning -use_wallclock_as_timestamps 1 -f hevc -i - -c copy -rtsp_transport tcp -f rtsp {output}'"
+
+# Consumers then point at go2rtc, e.g. Frigate:
+#   ffmpeg:
+#     inputs:
+#       - path: rtsp://go2rtc:8554/cam1
+#         roles: [record]
+#       - path: rtsp://go2rtc:8554/cam1_sub
+#         roles: [detect]

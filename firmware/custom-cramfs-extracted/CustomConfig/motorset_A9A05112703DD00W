@@ -1,0 +1,1 @@
+﻿gpio_pin=33,36,74,41,8,9,39,38,0xff,0xff,0xff,0xff auto_test=0 x_stepmax=4050 y_stepmax=1300 x_steps=4050 y_steps=1300 #auto_scan=1

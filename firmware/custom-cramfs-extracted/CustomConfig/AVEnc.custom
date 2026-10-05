@@ -1,0 +1,101 @@
+{
+    "Encode": [
+        {
+            "MainFormat": [
+                {
+                    "AudioEnable": true,
+                    "Video": {
+                        "BitRateControl": "VBR",
+                        "Compression": "H.264",
+                        "BitRate": 1024,
+                        "Resolution": "1080P",
+						"Quality": 3,
+						"GOP": 4,
+						"FPS": 10
+                    }
+                },
+                {
+                    "Video": {
+                        "BitRateControl": "VBR",
+                        "Compression": "H.264",
+                        "BitRate": 1024,
+                        "Resolution": "1080P",
+						"Quality": 3,
+						"GOP": 4,
+						"FPS": 10
+                    }
+                },
+                {
+                    "Video": {
+                        "BitRateControl": "VBR",
+                        "Compression": "H.264",
+                        "BitRate": 1024,
+                        "Resolution": "1080P",
+						"Quality": 3,
+						"GOP": 4,
+						"FPS": 10
+                    }
+                }
+            ],
+            "ExtraFormat": [
+                {
+                    "VideoEnable": true,
+                    "AudioEnable": true,
+                    "Video": {
+                        "BitRateControl": "VBR",
+                        "Compression": "H.264",
+                        "BitRate": 512,
+                        "Resolution": "QVGA",
+						"Quality": 3,
+						"GOP": 4,
+                        "FPS": 10
+                    }
+                }
+            ],
+            "EncodeStaticParam": [
+                {
+                    "Level": 41,
+                    "Profile": 2
+                }
+            ],
+            "SnapFormat": [
+                {
+                    "Video": {
+                        "BitRate": 512,
+                        "BitRateControl": "VBR",
+                        "Compression": "H.264",
+                        "FPS": 1,
+                        "GOP": 4,
+                        "Quality": 4,
+                        "Resolution": "QVGA"
+                    },
+                    "VideoEnable": true
+                },
+                {
+                    "Video": {
+                        "BitRate": 512,
+                        "BitRateControl": "VBR",
+                        "Compression": "H.264",
+                        "FPS": 1,
+                        "GOP": 4,
+                        "Quality": 4,
+                        "Resolution": "QVGA"
+                    },
+                    "VideoEnable": false
+                },
+                {
+                    "Video": {
+                        "BitRate": 512,
+                        "BitRateControl": "VBR",
+                        "Compression": "H.264",
+                        "FPS": 1,
+                        "GOP": 4,
+                        "Quality": 4,
+                        "Resolution": "QVGA"
+                    },
+                    "VideoEnable": false
+                }
+         ]
+      }
+   ]
+}

@@ -1,0 +1,21 @@
+{
+  "Vendor": "General",
+  "Hardware": "IPC_XM210_X2-WR-T_S38",
+  "LogoPartType": "cramfs",
+  "PackSize": 1536,
+  "PreRecSize": 2048,
+  "LogoArea": {
+    "Begin": "0x0",
+    "End": "0x0"
+  },
+  "CompatibleVersion": 1,
+  "BuildTime": "20260311",
+  "Language": [
+    "English",
+    "SimpChinese",
+    "ChineseEnglish",
+    "Spanish",
+    "Portugal",
+    "Russian"
+  ]
+}

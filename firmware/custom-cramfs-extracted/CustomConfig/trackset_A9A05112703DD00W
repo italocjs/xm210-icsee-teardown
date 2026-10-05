@@ -1,0 +1,5 @@
+﻿motor_left:left
+motor_up:up
+width_steps:850
+height_steps:400
+vertical_degrees:40

@@ -1,0 +1,10 @@
+{
+   "ExtDevIDCfg" : {
+			"PrimerIntel" : "0",
+   		"AdvIntel" : "0",
+			"WifiType" : "24",
+      "SubDevID" : "0",
+      "ExtProtocol" : "00",
+      "OEMSelfDef" : "00"
+   }
+}

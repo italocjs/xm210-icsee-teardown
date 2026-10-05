@@ -1,0 +1,14 @@
+WDT: 0x00000014s
+csi_mpu_config_region 
+Check Version OK
+Boot...
+flash init...ok
+pll init.PLLC-2MPsensor.00003010.ok
+psram init...000030100000000D
+-wb-1-
+-wb-2-
+-wb-3-
+-wb-4-
+-wb-5-
+ ok
+^@board init osmem[7538K] 

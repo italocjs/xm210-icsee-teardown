@@ -1,0 +1,47 @@
+﻿
+Event.AlarmLocal=Local Alarm
+Event.NetAbort=Net Verbroken
+Event.VideoBlind=Video Blind
+Event.VideoLoss=Video Loss
+Event.VideoMotion=Beweg.Detectie
+Event.HumanDetect=Menselijke detectie
+Event.PetDetect=Detectie van huisdieren
+Event.CarShapeDetect=Auto-detectie
+SMTP.AlarmBeginTime=Alarm Begin Tijd
+SMTP.AlarmEvent=Alarm Event
+SMTP.AlarmInChannel=Alarm ing.Cam No.
+SMTP.DeviceName=Alarm toestel naam
+SMTP.EventEnd=Einde
+SMTP.EventStart=Start
+SMTP.SenderIP=Sender IP address
+SMTP.SnapChannel=snapshot kanaal
+RecordStorage.WeekDay=Zondag | Maandag | Dinsdag | Woensdag | Donderdag | Vrijdag | Zaterdag | Alles
+Event.NetIPConflict=IP Conflict!
+Event.StorageFailure=Schijffout
+Event.StorageLowSpace=Geen schijfruimte
+Event.StorageNotExist=Geen schijf
+UserManager.PwdQuestions=Selecteer een vraag |Wat zijn de laatste vijf cijfers van uw mobiele nummer? |Wat is het e-mailaccount dat u vaak gebruikt? |Wat is je Facebook-account? |Wat is je Gmail-account? |Wanneer ben je jarig (bijvoorbeeld 06/1977)? |Wanneer is de verjaardag van uw moeder (bijvoorbeeld 02/1953)?
+UserManager.ErrorNumber=U heeft een onjuiste al 6 keer, dan kunt u uw apparaat om door te gaan werking hervatten
+UserManager.AnswerError=Fout antwoord, dan kunt u het juiste antwoord in te voeren
+AccountMSG.SetPasswordSuccess=Wachtwoord instellen Succes
+AccountMSG.Failed=Handeling mislukt.
+UserManager.PasswordSetTip=Wijzig het wachtwoord
+UserManager.EmailCodeTimeOut=Verificatie van een time - out
+UserManager.EmailCodeError=De validering van fouten
+UserManager.Emailsubject=Verificatiecode voor wachtwoordreset
+UserManager.EmailcontentONE=Uw e-mail verificatiecode is
+UserManager.EmailcontentTWO=Geldig gedurende 10 minuten.
+AlarmVoiceTip.24=Alarm bel
+AlarmVoiceTip.520=Alarm gebied, vertrek zo snel mogelijk.
+AlarmVoiceTip.521=Gevaarlijk gebied, blijf weg.
+AlarmVoiceTip.522=Geen parkeerplaats in dit gebied
+AlarmVoiceTip.523=U bent het monitoringgebied binnengegaan.
+AlarmVoiceTip.524=Hallo, welkom.
+AlarmVoiceTip.525=Raak niets van waarde aan.
+AlarmVoiceTip.526=Privé gebied, geen toegang
+AlarmVoiceTip.527=De diepte van het water is gevaarlijk, let op de veiligheid
+AlarmVoiceTip.528=Gevaar op hoogte, niet klimmen
+AlarmVoiceTip.529=Piepende alarm
+AlarmVoiceTip.550=Gebruik
+
+

@@ -1,0 +1,15 @@
+ProductName:XM210
+ChipID:XM210
+FlashType:NOR
+FlashSize:8M
+DdrType:DDR3
+DdrSize:16M
+DdrFreq:300
+bSd:no
+bAudio:yes
+WifiType:SSV6158M
+b3G:no
+bOnvif:no
+bUsb:yes
+bEth0:yes
+oem:General

@@ -1,0 +1,13 @@
+{
+    "VoiceTipType": {
+        "VoiceTip": [
+		    {
+                "VoiceEnum": 24
+            },
+        ]
+    },
+	"HumanRuleLimit": {
+		"SupportLine": false,
+		"LineNum": 0
+	}
+}

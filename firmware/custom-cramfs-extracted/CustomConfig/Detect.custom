@@ -1,0 +1,393 @@
+{
+    "MotionDetect": [
+        {
+            "Enable": true,
+            "EventHandler": {
+                "AlarmInfo": "",
+                "AlarmOutEnable": false,
+                "AlarmOutLatch": 10,
+                "AlarmOutMask": "0x00000001",
+                "BeepEnable": false,
+                "EventLatch": 2,
+                "FTPEnable": false,
+                "LogEnable": false,
+                "MailEnable": false,
+                "MatrixEnable": false,
+                "MatrixMask": "0x00000000",
+                "MessageEnable": true,
+                "MsgtoNetEnable": false,
+                "MultimediaMsgEnable": false,
+				"VoiceType": 24,
+                "PtzEnable": true,
+                "PtzLink": [
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        "None",
+                        0
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ],
+                    [
+                        null,
+                        null
+                    ]
+                ],
+                "RecordEnable": true,
+                "RecordLatch": 10,
+                "RecordMask": "0x00000001",
+                "ShortMsgEnable": false,
+                "ShowInfo": false,
+                "ShowInfoMask": "0x00000000",
+                "SnapEnable": true,
+                "SnapShotMask": "0x00000001",
+                "TimeSection": [
+                    [
+                        "1 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00"
+                    ],
+                    [
+                        "1 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00"
+                    ],
+                    [
+                        "1 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00"
+                    ],
+                    [
+                        "1 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00"
+                    ],
+                    [
+                        "1 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00"
+                    ],
+                    [
+                        "1 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00"
+                    ],
+                    [
+                        "1 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00",
+                        "0 00:00:00-24:00:00"
+                    ]
+                ],
+                "TipEnable": false,
+                "TourEnable": false,
+                "TourMask": "0x00000000",
+                "VoiceEnable": false
+            },
+            "Level": 3,
+            "Region": [
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF",
+                "0xFFFFFFFF"
+            ]
+        }
+    ],
+    "HumanDetection": [
+        {
+            "ObjectType": 1
+        }
+    ]
+}

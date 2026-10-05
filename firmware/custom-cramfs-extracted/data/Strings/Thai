@@ -1,0 +1,49 @@
+﻿
+Event.AlarmLocal=การเตือนภัยภายใน
+Event.NetAbort=เหตุการณ์หลุดสายทางเน็ต
+Event.VideoBlind=ตรวจสอบการปิดบังสัญญาณภาพ
+Event.VideoLoss=สัญญาณภาพศูนย์ขาดหาย
+Event.VideoMotion=ภาพเคลื่อนไหว
+Event.HumanDetect=มนุษย์ตรวจจับ
+Event.PetDetect=การตรวจจับสัตว์เลี้ยง
+Event.CarShapeDetect=การตรวจจับรถยนต์
+SMTP.AlarmBeginTime=เวลาที่เริ่มเตือนภัย
+SMTP.AlarmEvent=เหตุการณ์การเตือนภัย
+SMTP.AlarmInChannel=ช่องการเตือนภัยอินพุต　
+SMTP.DeviceName=ชื่ออุปกรณ์การเตือนภัย
+SMTP.EventEnd=สิ้นสุด
+SMTP.EventStart=เริ่มต้น
+SMTP.SenderIP=ที่อยู่ IP
+SMTP.SnapChannel=ช่องทางภาพรวม
+RecordStorage.WeekDay=อาทิตย์  |จันทร์  |อังคาร  |พุธ |พฤหัสบดี |ศุกร์ |เสาร์ |เต็ม
+Event.NetIPConflict=IP ขัดแย้งกัน
+Event.StorageFailure=ฮาร์ดดิสก์ผิดพลาด
+Event.StorageLowSpace=ที่ว่างฮาร์ดดิสก์ไม่พอ
+Event.StorageNotExist=ไม่มีฮาร์ดดิสก์
+UserManager.PwdQuestions=กรุณาเลือกคำถาม |หมายเลขโทรศัพท์ห้าหลักสุดท้ายของคุณคืออะไร | บัญชีอีเมลที่คุณใช้บ่อยคืออะไร? | บัญชี Facebook ของคุณคืออะไร? | บัญชี Gmail ของคุณคืออะไร? | วันเกิดของคุณคือวันไหน (เช่น 06/1977) | วันเกิดของแม่ของคุณคือเมื่อใด (เช่น 02/1953)
+UserManager.AnswerError=คำตอบที่ผิดโปรดเลือกคำตอบที่ถูก
+UserManager.ErrorNumber=คุณได้รับไม่ถูกต้องสำหรับครั้งที่ 6 โปรดรีสตาร์ทอุปกรณ์เพื่อดำเนินการต่อการดำเนินงาน
+AccountMSG.Failed=การทำงานล้มเหลว
+AccountMSG.SetPasswordSuccess=ตั้งรหัสผ่านที่ประสบความสำเร็จ passwordSet
+UserManager.PasswordSetTip=โปรดแก้ไขรหัสผ่าน
+UserManager.EmailCodeTimeOut=รหัสยืนยันหมดเวลา
+UserManager.EmailCodeError=ข้อผิดพลาดในการตรวจสอบรหัส
+UserManager.Emailsubject=รหัสยืนยันรหัสผ่านใหม่
+UserManager.EmailcontentONE=รหัสยืนยันอีเมลของคุณคือ
+UserManager.EmailcontentTWO=ใช้ได้ภายใน 10 นาที
+AlarmVoiceTip.24=ไซเรน
+AlarmVoiceTip.520=พื้นที่เตือนภัย ให้รีบออกไป
+AlarmVoiceTip.521=พื้นที่อันตราย ห้ามเข้าใกล้
+AlarmVoiceTip.522=ห้ามจอดรถบริเวณนี้
+AlarmVoiceTip.523=คุณได้เข้าสู่พื้นที่การตรวจสอบ
+AlarmVoiceTip.524=สวัสดียินดีต้อนรับ
+AlarmVoiceTip.525=ของมีค่า ห้ามจับ
+AlarmVoiceTip.526=พื้นที่ส่วนตัว ห้ามเข้า
+AlarmVoiceTip.527=น้ำลึกอันตราย ใส่ใจความปลอดภัย
+AlarmVoiceTip.528=สูงอันตราย ห้ามปีน
+AlarmVoiceTip.529=นกหวีด
+AlarmVoiceTip.550=ปรับแต่ง
+
+
+
+

@@ -1,0 +1,232 @@
+#!/usr/bin/env python3
+"""
+sofia-cam - command line tool for Xiongmai / Sofia / DVRIP cameras (TCP 34567).
+
+Subcommands:
+  discover  CIDR [--user U --pass P]      scan a network for cameras
+  info      HOST USER PASS                firmware, codec, encode config, abilities
+  get       HOST USER PASS NAME           read one config node as JSON
+  set       HOST USER PASS NAME JSON      write one config node (asks to confirm)
+  stream    HOST USER PASS [--sub]        de-framed Annex-B video to stdout
+  probe     HOST                          check whether 554 / 8899 actually listen
+  reboot    HOST USER PASS --i-understand-this-reboots
+
+Read paths (discover, info, get, stream, probe) do not change the camera.
+Write paths (set, reboot) are gated and should only run with the owner's say-so.
+"""
+
+import argparse
+import concurrent.futures
+import ipaddress
+import json
+import os
+import sys
+import time
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from sofia_client import (  # noqa: E402
+    SofiaCamera, SofiaError, SofiaAuthError, port_open, xm_md5, FFMPEG_FMT,
+)
+
+DVRIP_PORT = 34567
+
+
+def _print(obj):
+    json.dump(obj, sys.stdout, indent=2, ensure_ascii=False, sort_keys=True)
+    sys.stdout.write("\n")
+
+
+def cmd_discover(a):
+    net = ipaddress.ip_network(a.cidr, strict=False)
+    hosts = [str(h) for h in net.hosts()] or [str(net.network_address)]
+    sys.stderr.write(f"scanning {len(hosts)} addresses for port {DVRIP_PORT} ...\n")
+
+    def check(ip):
+        if not port_open(ip, DVRIP_PORT, timeout=a.timeout):
+            return None
+        row = {"host": ip, "port_34567": True, "login": None}
+        if a.user is not None:
+            try:
+                with SofiaCamera(ip, a.user, a.password or "", timeout=a.timeout) as cam:
+                    fp = cam.fingerprint()
+                row["login"] = "ok"
+                row["software_version"] = fp.get("software_version")
+                row["encode_main"] = fp.get("encode_main")
+            except SofiaAuthError:
+                row["login"] = "auth-failed"
+            except SofiaError as e:
+                row["login"] = f"error: {e}"
+        return row
+
+    found = []
+    with concurrent.futures.ThreadPoolExecutor(max_workers=a.workers) as ex:
+        for row in ex.map(check, hosts):
+            if row:
+                found.append(row)
+                _print(row)
+    sys.stderr.write(f"done, {len(found)} camera(s)\n")
+
+
+def cmd_info(a):
+    with SofiaCamera(a.host, a.user, a.password, timeout=a.timeout) as cam:
+        fp = cam.fingerprint()
+        # add a live codec/size read from the first I-frame
+        live = {}
+
+        def grab(meta):
+            live.update(meta)
+            raise _StopGrab()
+
+        try:
+            cam.stream_elementary(lambda b: None, substream=a.sub,
+                                  duration=8.0, on_meta=grab)
+        except _StopGrab:
+            pass
+        except (SofiaError, OSError):
+            pass
+        fp["live_stream"] = live or None
+    _print(fp)
+
+
+class _StopGrab(Exception):
+    pass
+
+
+def cmd_get(a):
+    with SofiaCamera(a.host, a.user, a.password, timeout=a.timeout) as cam:
+        _print(cam.get_config(a.name))
+
+
+def cmd_set(a):
+    try:
+        value = json.loads(a.json)
+    except json.JSONDecodeError as e:
+        sys.exit(f"value is not valid JSON: {e}")
+    with SofiaCamera(a.host, a.user, a.password, timeout=a.timeout) as cam:
+        current = None
+        try:
+            current = cam.get_config(a.name)
+        except SofiaError:
+            pass
+        sys.stderr.write(f"current {a.name}:\n")
+        json.dump(current, sys.stderr, indent=2, ensure_ascii=False)
+        sys.stderr.write(f"\n\nnew {a.name}:\n")
+        json.dump(value, sys.stderr, indent=2, ensure_ascii=False)
+        sys.stderr.write("\n\n")
+        if not a.yes:
+            if input("write this to the camera? [y/N] ").strip().lower() != "y":
+                sys.exit("aborted")
+        _print(cam.set_config(a.name, value))
+
+
+def cmd_stream(a):
+    out = sys.stdout.buffer
+    backoff = a.retry
+    while True:
+        try:
+            with SofiaCamera(a.host, a.user, a.password, timeout=a.timeout) as cam:
+                sys.stderr.write(
+                    f"[sofia-cam] connected {a.host} stream={'sub' if a.sub else 'main'}\n")
+
+                def meta(m):
+                    sys.stderr.write(f"[sofia-cam] {m['codec']} {m['width']}x{m['height']} "
+                                     f"{m['fps']}fps  ffmpeg -f {FFMPEG_FMT.get(m['codec'],'h264')}\n")
+
+                n = cam.stream_elementary(out.write, substream=a.sub,
+                                          duration=a.duration, on_meta=meta)
+                sys.stderr.write(f"[sofia-cam] wrote {n} bytes, done\n")
+            return
+        except (SofiaError, OSError) as e:
+            sys.stderr.write(f"[sofia-cam] {e}\n")
+            if a.duration or a.once:
+                sys.exit(1)
+            time.sleep(backoff)
+            backoff = min(backoff * 2, 30.0)
+
+
+def cmd_probe(a):
+    result = {
+        "host": a.host,
+        "dvrip_34567": port_open(a.host, 34567, a.timeout),
+        "rtsp_554": port_open(a.host, 554, a.timeout),
+        "onvif_8899": port_open(a.host, 8899, a.timeout),
+        "http_80": port_open(a.host, 80, a.timeout),
+        "https_8443": port_open(a.host, 8443, a.timeout),
+    }
+    result["verdict"] = (
+        "standard RTSP available" if result["rtsp_554"]
+        else "dvrip only, use `sofia-cam stream`"
+    )
+    _print(result)
+
+
+def cmd_reboot(a):
+    if not a.i_understand_this_reboots:
+        sys.exit("refusing: pass --i-understand-this-reboots")
+    with SofiaCamera(a.host, a.user, a.password, timeout=a.timeout) as cam:
+        _print(cam.reboot())
+
+
+def build_parser():
+    p = argparse.ArgumentParser(prog="sofia-cam", description=__doc__,
+                                formatter_class=argparse.RawDescriptionHelpFormatter)
+    p.add_argument("--timeout", type=float, default=10.0)
+    sub = p.add_subparsers(dest="cmd", required=True)
+
+    d = sub.add_parser("discover", help="scan a CIDR for cameras")
+    d.add_argument("cidr")
+    d.add_argument("--user", default=None)
+    d.add_argument("--pass", dest="password", default=None)
+    d.add_argument("--workers", type=int, default=128)
+    d.set_defaults(func=cmd_discover)
+
+    i = sub.add_parser("info", help="fingerprint a camera")
+    i.add_argument("host"); i.add_argument("user"); i.add_argument("password")
+    i.add_argument("--sub", action="store_true", help="read the sub stream")
+    i.set_defaults(func=cmd_info)
+
+    g = sub.add_parser("get", help="read one config node")
+    g.add_argument("host"); g.add_argument("user"); g.add_argument("password")
+    g.add_argument("name")
+    g.set_defaults(func=cmd_get)
+
+    s = sub.add_parser("set", help="write one config node")
+    s.add_argument("host"); s.add_argument("user"); s.add_argument("password")
+    s.add_argument("name"); s.add_argument("json")
+    s.add_argument("--yes", action="store_true", help="skip the confirm prompt")
+    s.set_defaults(func=cmd_set)
+
+    st = sub.add_parser("stream", help="de-framed video to stdout")
+    st.add_argument("host"); st.add_argument("user"); st.add_argument("password")
+    st.add_argument("--sub", action="store_true", help="pull the sub stream")
+    st.add_argument("--duration", type=float, default=0.0, help="seconds (0 = forever)")
+    st.add_argument("--retry", type=float, default=3.0, help="reconnect backoff seconds")
+    st.add_argument("--once", action="store_true", help="do not reconnect on drop")
+    st.set_defaults(func=cmd_stream)
+
+    pr = sub.add_parser("probe", help="check for standard RTSP / ONVIF ports")
+    pr.add_argument("host")
+    pr.set_defaults(func=cmd_probe)
+
+    rb = sub.add_parser("reboot", help="reboot the camera (gated)")
+    rb.add_argument("host"); rb.add_argument("user"); rb.add_argument("password")
+    rb.add_argument("--i-understand-this-reboots", action="store_true")
+    rb.set_defaults(func=cmd_reboot)
+
+    return p
+
+
+def main(argv=None):
+    args = build_parser().parse_args(argv)
+    try:
+        args.func(args)
+    except SofiaAuthError as e:
+        sys.exit(f"auth error: {e}")
+    except SofiaError as e:
+        sys.exit(f"error: {e}")
+    except KeyboardInterrupt:
+        sys.exit(130)
+
+
+if __name__ == "__main__":
+    main()

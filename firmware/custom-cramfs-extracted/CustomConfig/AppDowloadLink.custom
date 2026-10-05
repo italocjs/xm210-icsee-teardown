@@ -1,0 +1,10 @@
+{
+	"IOSEnable": false,
+	"IOSLink": "http://d.xmeye.net/CSee",
+	"AndroidEnable": true,
+	"AndroidLink": "http://d.xmeye.net/CSee",
+	"OtherEnable": false,
+	"OtherName": "mobile APP",
+	"OtherLink": "http://d.xmeye.net/CSee",
+	"SNEnable": false
+}
